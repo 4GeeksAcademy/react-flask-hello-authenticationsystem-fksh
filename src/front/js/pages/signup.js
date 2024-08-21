@@ -6,9 +6,12 @@ export const Signup = () => {
     email: "",
     password: "",
     first_name: "",
-    last_name: ""
+    last_name: "",
   });
+
   const navigate = useNavigate();
+
+  const apiUrl = "https://super-duper-space-trout-69vr79r5wv95f5469-3001.app.github.dev/api"
 
   const handleChange = (e) => {
     setUser({
@@ -19,28 +22,27 @@ export const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const resp = await fetch(
-      `${process.env.BACKEND_URL}/api/signup`,
-      {
-        body: JSON.stringify(user),
-        headers: {
-          "Content-Type": "application/json"
-        },
-        method: "POST",
-      }
-    );
-    if (resp.status === 201) {
-      navigate("/login"); 
+    const signUpNewUser = await fetch(`${apiUrl}/signup`, {
+      method: "POST",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (signUpNewUser.status === 201) {
+      navigate("/login");
     } else {
     }
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 border border-secondary rounded">
       <h1>Signup</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">Email</label>
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
           <input
             type="email"
             className="form-control"
@@ -53,7 +55,9 @@ export const Signup = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="password" className="form-label">Password</label>
+          <label htmlFor="password" className="form-label">
+            Password
+          </label>
           <input
             type="password"
             className="form-control"
@@ -66,7 +70,9 @@ export const Signup = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="first_name" className="form-label">First Name</label>
+          <label htmlFor="first_name" className="form-label">
+            First Name
+          </label>
           <input
             type="text"
             className="form-control"
@@ -78,7 +84,9 @@ export const Signup = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="last_name" className="form-label">Last Name</label>
+          <label htmlFor="last_name" className="form-label">
+            Last Name
+          </label>
           <input
             type="text"
             className="form-control"
@@ -89,7 +97,9 @@ export const Signup = () => {
             placeholder="Enter last name"
           />
         </div>
-        <button type="submit" className="btn btn-primary">Signup</button>
+        <button type="submit" className="btn btn-dark">
+          Signup
+        </button>
       </form>
     </div>
   );

@@ -1,17 +1,20 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
-		store: {
-			token: null
+	  store: {
+		token: localStorage.getItem("token") || null,
+	  },
+	  actions: {
+		addToken: (inputToken) => {
+		  localStorage.setItem("token", inputToken);
+		  setStore({ token: inputToken });
 		},
-		actions: {
-			addToken: (inputToken) => {
-				setStore({token:inputToken})
-			  },
-			  removeToken: () => {
-				setStore({token:null})
-			  },
-		}
+		removeToken: () => {
+		  localStorage.removeItem("token");
+		  setStore({ token: null });
+		},
+	  },
 	};
-};
-
-export default getState;
+  };
+  
+  export default getState;
+  

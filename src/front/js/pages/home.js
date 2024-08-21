@@ -1,26 +1,12 @@
-import React, { useContext } from "react";
-import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
+import React from "react";
 import "../../styles/home.css";
+import autoagendalogo from "../../img/autoagendalogo.png";
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
-
-	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
-			<p>
-				<img src={rigoImageUrl} />
-			</p>
-			<div className="alert alert-info">
-				{store.message || "Loading message from the backend (make sure your python backend is running)..."}
-			</div>
-			<p>
-				This boilerplate comes with lots of documentation:{" "}
-				<a href="https://start.4geeksacademy.com/starters/react-flask">
-					Read documentation
-				</a>
-			</p>
-		</div>
-	);
+  return (
+    <div className="d-flex flex-column justify-content-center align-items-center min-vh-100 text-center">
+      <img src={autoagendalogo} className="img-fluid logo-size" alt="AutoAgenda Logo" />
+      <h1 className="mt-2"><i>Exclusive Members Club</i></h1>
+    </div>
+  );
 };
